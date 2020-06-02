@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
-import { container } from 'tsyringe'
+
 import { classToClass } from 'class-transformer'
+import { container } from 'tsyringe'
 
 import ShowProfileService from '@modules/users/services/ShowProfileService'
 import AppError from '@shared/errors/AppError'
@@ -12,7 +13,7 @@ export default class ProfileController {
       const showProfile = container.resolve(ShowProfileService)
 
       const user = await showProfile.execute({
-        userId: Number(userId)
+        userId: Number(userId),
       })
 
       return res.json(classToClass(user))

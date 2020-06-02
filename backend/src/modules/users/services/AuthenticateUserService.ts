@@ -1,12 +1,11 @@
 import { sign } from 'jsonwebtoken'
 import { injectable, inject } from 'tsyringe'
 
-import AppError from '@shared/errors/AppError'
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider'
-
 import authConfig from '@config/auth'
 import User from '@modules/users/infra/typeorm/entities/User'
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider'
+import IUsersRepository from '@modules/users/repositories/IUsersRepository'
+import AppError from '@shared/errors/AppError'
 
 interface IRequest {
   email: string;
@@ -24,7 +23,7 @@ export default class AuthenticateUserService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute ({ email, password }: IRequest): Promise<IResponse> {
@@ -36,7 +35,7 @@ export default class AuthenticateUserService {
 
     const passwordMatched = await this.hashProvider.comapreHash(
       password,
-      user.password
+      user.password,
     )
 
     if (!passwordMatched) {
@@ -49,7 +48,7 @@ export default class AuthenticateUserService {
 
     return {
       user,
-      token
+      token,
     }
   }
 }

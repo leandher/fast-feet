@@ -10,37 +10,37 @@ export class User1591043763216 implements MigrationInterface {
         isPrimary: true,
         isGenerated: true,
         isUnique: true,
-        generationStrategy: 'increment'
+        generationStrategy: 'increment',
       },
       {
         name: 'name',
         type: 'varchar',
-        width: 255
+        width: 255,
       },
       {
         name: 'email',
         type: 'varchar',
         width: 255,
-        isUnique: true
+        isUnique: true,
       },
       {
         name: 'password_hash',
         type: 'varchar',
-        width: 255
+        width: 255,
       },
       {
         name: 'created_at',
         type: 'timestamptz',
         isNullable: false,
-        default: 'now()'
+        default: 'now()',
       },
       {
         name: 'updated_at',
         type: 'timestamptz',
         isNullable: false,
-        default: 'now()'
-      }
-    ]
+        default: 'now()',
+      },
+    ],
   });
 
   public async up (queryRunner: QueryRunner): Promise<void> {

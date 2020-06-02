@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import { container } from 'tsyringe'
 
 import CreateRecipientsService from '@modules/recipients/services/CreateRecipientsService'
@@ -30,7 +31,7 @@ export default class RecipientsController {
         complement,
         state,
         city,
-        cep
+        cep,
       })
       return response.json(recipient)
     } catch (error) {
@@ -52,7 +53,7 @@ export default class RecipientsController {
         complement,
         state,
         city,
-        cep
+        cep,
       })
       return response.json(recipient)
     } catch (error) {

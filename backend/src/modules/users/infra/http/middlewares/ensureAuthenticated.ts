@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+
 import { verify } from 'jsonwebtoken'
 
 import authConfig from '@config/auth'
@@ -13,7 +14,7 @@ interface ITokenPayload {
 export default function ensureAuthenticated (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   const authHeader = req.headers.authorization
 
@@ -29,7 +30,7 @@ export default function ensureAuthenticated (
     const { sub } = decoded as ITokenPayload
 
     req.user = {
-      id: sub
+      id: sub,
     }
 
     return next()

@@ -2,8 +2,9 @@ import 'reflect-metadata'
 import 'dotenv/config'
 
 import express, { Request, Response, NextFunction } from 'express'
-import cors from 'cors'
+
 import { errors } from 'celebrate'
+import cors from 'cors'
 
 import AppError from '@shared/errors/AppError'
 import routes from '@shared/infra/http/routes'
@@ -30,7 +31,7 @@ class App {
       if (err instanceof AppError) {
         return res.status(err.statusCode).json({
           status: 'error',
-          message: err.message
+          message: err.message,
         })
       }
 
@@ -38,7 +39,7 @@ class App {
 
       return res.status(500).json({
         status: 'error',
-        message: 'Internal server error'
+        message: 'Internal server error',
       })
     })
   }

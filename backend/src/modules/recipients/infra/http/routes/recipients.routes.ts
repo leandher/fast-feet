@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { celebrate, Segments, Joi } from 'celebrate'
 
 import RecipientsController from '@modules/recipients/infra/http/controllers/RecipientsController'
@@ -18,10 +19,10 @@ recipientsRouter.post(
       complement: Joi.string().required(),
       state: Joi.string().required(),
       city: Joi.string().required(),
-      cep: Joi.string().required()
-    }
+      cep: Joi.string().required(),
+    },
   }),
-  recipientsController.create
+  recipientsController.create,
 )
 
 recipientsRouter.put(
@@ -34,10 +35,10 @@ recipientsRouter.put(
       complement: Joi.string().required(),
       state: Joi.string().required(),
       city: Joi.string().required(),
-      cep: Joi.string().required()
-    }
+      cep: Joi.string().required(),
+    },
   }),
-  recipientsController.update
+  recipientsController.update,
 )
 
 recipientsRouter.get('/', recipientsController.index)

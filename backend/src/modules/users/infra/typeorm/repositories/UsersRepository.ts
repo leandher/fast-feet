@@ -1,9 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 import ICraeteUserDTO from '@modules/users/dtos/ICreateUserDTO'
-
 import User from '@modules/users/infra/typeorm/entities/User'
+import IUsersRepository from '@modules/users/repositories/IUsersRepository'
 
 class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
@@ -27,7 +26,7 @@ class UsersRepository implements IUsersRepository {
   public async create ({
     name,
     email,
-    password
+    password,
   }: ICraeteUserDTO): Promise<User> {
     const user = this.ormRepository.create({ name, email, password })
 

@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe'
 
-import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
 import Recipient from '@modules/recipients/infra/typeorm/entities/Recipient'
+import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
 
 @injectable()
 export default class ListRecipientsService {
   constructor (
     @inject('RecipientsRepository')
-    private recipientsRepository: IRecipientsRepository
+    private recipientsRepository: IRecipientsRepository,
   ) {}
 
   async execute (): Promise<Recipient[]> {

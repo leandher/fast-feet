@@ -1,7 +1,7 @@
-import { injectable, inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
-import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
 import Recipient from '@modules/recipients/infra/typeorm/entities/Recipient'
+import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
 import AppError from '@shared/errors/AppError'
 
 interface IRequest {
@@ -18,7 +18,7 @@ interface IRequest {
 export default class UpdateRecipientsService {
   constructor (
     @inject('RecipientsRepository')
-    private recipientsRepository: IRecipientsRepository
+    private recipientsRepository: IRecipientsRepository,
   ) {}
 
   async execute ({
@@ -28,7 +28,7 @@ export default class UpdateRecipientsService {
     complement,
     state,
     city,
-    cep
+    cep,
   }: IRequest): Promise<Recipient> {
     const recipient = await this.recipientsRepository.findById(id)
 

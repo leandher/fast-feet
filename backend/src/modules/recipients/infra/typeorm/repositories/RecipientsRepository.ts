@@ -1,7 +1,8 @@
 import { getRepository, Repository } from 'typeorm'
-import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
-import Recipient from '@modules/recipients/infra/typeorm/entities/Recipient'
+
 import ICreateRecipientDTO from '@modules/recipients/dtos/ICreateRecipientDTO'
+import Recipient from '@modules/recipients/infra/typeorm/entities/Recipient'
+import IRecipientsRepository from '@modules/recipients/repositories/IRecipientsRepository'
 
 export default class RecipientsRepository implements IRecipientsRepository {
   private ormRepository: Repository<Recipient>;
