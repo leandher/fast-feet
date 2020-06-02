@@ -1,0 +1,19 @@
+{
+   "type": "postgres",
+   "host": "127.0.0.1",
+   "port": 5432,
+   "username": "postgres",
+   "password": "q1w2e3r4",
+   "database": "fast_feet",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "./src/modules/**/infra/typeorm/entities/*.ts"
+   ],
+   "migrations": [
+      "./src/shared/infra/typeorm/migrations/*.ts"
+   ],
+   "cli": {
+      "migrationsDir": "./src/shared/infra/typeorm/migrations"
+   }
+}
