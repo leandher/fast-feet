@@ -24,6 +24,22 @@ recipientsRouter.post(
   recipientsController.create
 )
 
+recipientsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      id: Joi.number().integer().required(),
+      street: Joi.string().required(),
+      number: Joi.string().required(),
+      complement: Joi.string().required(),
+      state: Joi.string().required(),
+      city: Joi.string().required(),
+      cep: Joi.string().required()
+    }
+  }),
+  recipientsController.update
+)
+
 recipientsRouter.get('/', recipientsController.index)
 
 export default recipientsRouter

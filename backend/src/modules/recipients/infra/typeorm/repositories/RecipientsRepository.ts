@@ -10,6 +10,10 @@ export default class RecipientsRepository implements IRecipientsRepository {
     this.ormRepository = getRepository(Recipient)
   }
 
+  async save (recipient: Recipient): Promise<Recipient> {
+    return this.ormRepository.save(recipient)
+  }
+
   async findAll (): Promise<Recipient[]> {
     const recipients = await this.ormRepository.find()
 
