@@ -5,7 +5,7 @@
    "username": "postgres",
    "password": "q1w2e3r4",
    "database": "fast_feet",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
       "./src/modules/**/infra/typeorm/entities/*.ts"
