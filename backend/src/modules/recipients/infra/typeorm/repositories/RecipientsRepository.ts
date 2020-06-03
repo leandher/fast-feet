@@ -27,8 +27,8 @@ export default class RecipientsRepository implements IRecipientsRepository {
     return recipient
   }
 
-  async create ({ cep, city, complement, state, street, number }: ICreateRecipientDTO): Promise<Recipient> {
-    const recipient = this.ormRepository.create({ cep, city, complement, state, street, number })
+  async create ({ cep, city, complement, state, street, number, district }: ICreateRecipientDTO): Promise<Recipient> {
+    const recipient = this.ormRepository.create({ cep, city, complement, state, street, number, district })
 
     const createdRecipient = await this.ormRepository.save(recipient)
 

@@ -5,4 +5,5 @@ export default interface ICreateRecipientDTO {
   state: string;
   city: string;
   cep: string;
+  district: string;
 }

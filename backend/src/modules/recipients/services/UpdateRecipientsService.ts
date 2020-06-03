@@ -12,6 +12,7 @@ interface IRequest {
   state: string;
   city: string;
   cep: string;
+  district: string;
 }
 
 @injectable()
@@ -29,12 +30,13 @@ export default class UpdateRecipientsService {
     state,
     city,
     cep,
+    district,
   }: IRequest): Promise<Recipient> {
     const recipient = await this.recipientsRepository.findById(id)
 
     if (!recipient) throw new AppError('Recipient not found')
 
-    Object.assign(recipient, { street, number, complement, state, city, cep })
+    Object.assign(recipient, { street, number, complement, state, city, cep, district })
 
     return this.recipientsRepository.save(recipient)
   }

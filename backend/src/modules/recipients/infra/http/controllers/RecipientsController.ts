@@ -21,7 +21,7 @@ export default class RecipientsController {
 
   async create (request: Request, response: Response): Promise<Response> {
     try {
-      const { street, number, complement, state, city, cep } = request.body
+      const { street, number, complement, state, city, cep, district } = request.body
 
       const createRecipient = container.resolve(CreateRecipientsService)
 
@@ -32,6 +32,7 @@ export default class RecipientsController {
         state,
         city,
         cep,
+        district,
       })
       return response.json(recipient)
     } catch (error) {
@@ -41,7 +42,7 @@ export default class RecipientsController {
 
   async update (request: Request, response: Response): Promise<Response> {
     try {
-      const { street, number, complement, state, city, cep } = request.body
+      const { street, number, complement, state, city, cep, district } = request.body
       const { id } = request.params
 
       const updateRecipient = container.resolve(UpdateRecipientsService)
@@ -54,6 +55,7 @@ export default class RecipientsController {
         state,
         city,
         cep,
+        district,
       })
       return response.json(recipient)
     } catch (error) {
