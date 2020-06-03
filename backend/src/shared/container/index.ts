@@ -2,7 +2,9 @@ import { container } from 'tsyringe'
 
 import '@modules/users/providers'
 
+import DeliveryManOrderRepository from '@modules/deliveryman/infra/typeorm/repositories/DeliveryManOrderRepository'
 import DeliveryManRepository from '@modules/deliveryman/infra/typeorm/repositories/DeliveryManRepository'
+import IDeliveryManOrderRepository from '@modules/deliveryman/repositories/IDeliveryManOrderRepository'
 import IDeliveryManRepository from '@modules/deliveryman/repositories/IDeliveryManRepository'
 import OrderRepository from '@modules/order/infra/typeorm/repositories/OrderRepository'
 import IOrderRepository from '@modules/order/repositories/IOrderRepository'
@@ -24,6 +26,11 @@ container.registerSingleton<IRecipientsRepository>(
 container.registerSingleton<IDeliveryManRepository>(
   'DeliveryManRepository',
   DeliveryManRepository,
+)
+
+container.registerSingleton<IDeliveryManOrderRepository>(
+  'DeliveryManOrderRepository',
+  DeliveryManOrderRepository,
 )
 
 container.registerSingleton<IOrderRepository>(

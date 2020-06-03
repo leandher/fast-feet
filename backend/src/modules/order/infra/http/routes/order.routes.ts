@@ -34,10 +34,13 @@ orderRouter.put(
   celebrate({
     [Segments.BODY]: {
       product: Joi.string(),
-      signature: Joi.string(),
+      recipient: Joi.object({
+        id: Joi.number().integer(),
+      }),
+      deliveryMan: Joi.object({
+        id: Joi.number().integer(),
+      }),
       canceledAt: Joi.date(),
-      startDate: Joi.date(),
-      endDate: Joi.date(),
     },
   }),
   orderController.update,

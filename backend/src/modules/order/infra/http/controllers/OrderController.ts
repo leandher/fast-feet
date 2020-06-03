@@ -39,22 +39,17 @@ export default class OrderController {
   async update (request: Request, response: Response): Promise<Response> {
     try {
       const {
-        signature,
-        canceledAt,
-        startDate,
-        endDate,
-        product,
+        deliveryMan, recipient, product, canceledAt,
       } = request.body
       const { id } = request.params
 
       const updateOrder = container.resolve(UpdateOrderService)
       const order = await updateOrder.execute({
-        signature,
-        canceledAt,
-        startDate,
-        endDate,
+        deliveryMan,
+        recipient,
         product,
         id: Number(id),
+        canceledAt,
       })
 
       return response.json(order)
