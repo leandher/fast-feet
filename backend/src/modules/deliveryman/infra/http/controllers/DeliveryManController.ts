@@ -15,7 +15,7 @@ export default class DeliveryManController {
 
       return response.json(deliveryMen)
     } catch (error) {
-      return response.status(error.statusCode || 500).json({ error })
+      return response.status(error.statusCode || 500).json(error)
     }
   }
 

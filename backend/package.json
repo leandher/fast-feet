@@ -11,6 +11,7 @@
 		"lint": "eslint ."
 	},
 	"dependencies": {
+		"@hapi/joi": "^17.1.1",
 		"bcryptjs": "^2.4.3",
 		"celebrate": "^12.1.1",
 		"class-transformer": "^0.2.3",
@@ -27,6 +28,8 @@
 		"@types/bcryptjs": "^2.4.2",
 		"@types/cors": "^2.8.6",
 		"@types/express": "^4.17.6",
+		"@types/hapi__joi": "^17.1.2",
+		"@types/joi": "^14.3.4",
 		"@types/jsonwebtoken": "^8.5.0",
 		"@types/node": "^8.0.29",
 		"@typescript-eslint/eslint-plugin": "^3.1.0",
