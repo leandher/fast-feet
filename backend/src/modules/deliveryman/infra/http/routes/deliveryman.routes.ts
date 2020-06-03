@@ -1,7 +1,8 @@
 import { Router } from 'express'
 
-import { celebrate, Segments, Joi } from 'celebrate'
+import { celebrate, Segments } from 'celebrate'
 
+import Joi from '@hapi/joi'
 import DeliveryManController from '@modules/deliveryman/infra/http/controllers/DeliveryManController'
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated'
 

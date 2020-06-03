@@ -1,7 +1,8 @@
 import { Router } from 'express'
 
-import { celebrate, Segments, Joi } from 'celebrate'
+import { celebrate, Segments } from 'celebrate'
 
+import Joi from '@hapi/joi'
 import UsersController from '@modules/users/infra/http/controllers/UsersController'
 
 const usersRouter = Router()
