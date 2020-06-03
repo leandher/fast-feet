@@ -12,7 +12,9 @@ export default class OrderRepository implements IOrderRepository {
   }
 
   findAll (): Promise<Order[]> {
-    return this.ormRepository.find()
+    return this.ormRepository.find({
+      relations: ['recipient', 'deliveryMan'],
+    })
   }
 
   findById (id: number): Promise<Order> {

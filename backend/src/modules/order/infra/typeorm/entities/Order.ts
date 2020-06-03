@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 
-import DeliveryMan from '@modules/deliveryman/infra/typeorm/entities/DeliveryMan'
-import Recipient from '@modules/recipients/infra/typeorm/entities/Recipient'
+import DeliveryMan from '../../../../deliveryman/infra/typeorm/entities/DeliveryMan'
+import Recipient from '../../../../recipients/infra/typeorm/entities/Recipient'
 
 @Entity({ name: 'order' })
 export default class Order {
@@ -21,10 +21,10 @@ export default class Order {
   recipient: Recipient;
 
   @ManyToOne(() => DeliveryMan)
-  @JoinColumn({ name: 'recipient_id' })
+  @JoinColumn({ name: 'deliveryman_id' })
   deliveryMan: DeliveryMan;
 
-  @Column({ name: 'signature_id ' })
+  @Column({ name: 'signature_id' })
   signature: string;
 
   @Column()
