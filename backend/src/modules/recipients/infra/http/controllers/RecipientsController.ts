@@ -15,7 +15,7 @@ export default class RecipientsController {
 
       return response.json(recipients)
     } catch (error) {
-      return response.status(500).json(error)
+      return response.status(error.statusCode || 500).json(error)
     }
   }
 
@@ -35,7 +35,7 @@ export default class RecipientsController {
       })
       return response.json(recipient)
     } catch (error) {
-      return response.status(500).json(error)
+      return response.status(error.statusCode || 500).json(error)
     }
   }
 
