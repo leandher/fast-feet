@@ -33,6 +33,7 @@ export default class StartDeliveryService {
 
     if (!order) throw new AppError('Order not found')
     if (order.startDate) throw new AppError('Order has already started')
+    if (order.canceledAt) throw new AppError('Order has already canceled')
 
     Object.assign(order, {
       startDate: new Date(),

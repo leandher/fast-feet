@@ -24,6 +24,7 @@ export default class FinishDeliveryService {
     if (!order) throw new AppError('Order not found')
     if (!order.startDate) throw new AppError('Order has not started yet')
     if (order.endDate) throw new AppError('Order has already finished')
+    if (order.canceledAt) throw new AppError('Order has already canceled')
 
     Object.assign(order, {
       endDate: new Date(),
