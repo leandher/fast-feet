@@ -39,7 +39,7 @@ export default class OrderController {
   async update (request: Request, response: Response): Promise<Response> {
     try {
       const {
-        deliveryMan, recipient, product, canceledAt,
+        deliveryMan, recipient, product,
       } = request.body
       const { id } = request.params
 
@@ -49,7 +49,6 @@ export default class OrderController {
         recipient,
         product,
         id: Number(id),
-        canceledAt,
       })
 
       return response.json(order)

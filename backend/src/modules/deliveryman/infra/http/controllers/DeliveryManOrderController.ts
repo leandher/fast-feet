@@ -2,6 +2,7 @@ import { Response, Request } from 'express'
 
 import { container } from 'tsyringe'
 
+import CancelDeliveryService from '@modules/deliveryman/services/CancelDeliveryService'
 import FinishDeliveryService from '@modules/deliveryman/services/FinishDeliveryService'
 import ListDeliveryManOrdersService from '@modules/deliveryman/services/ListDeliveryManOrdersService'
 import StartDeliveryService from '@modules/deliveryman/services/StartDeliveryService'
@@ -36,6 +37,20 @@ export default class DeliveryManOrderController {
       const finishDelivery = container.resolve(FinishDeliveryService)
 
       const order = await finishDelivery.execute(Number(orderId), Number(deliveryManId), String(signature))
+
+      return response.json(order)
+    } catch (error) {
+      return response.status(error.statusCode || 500).json(error)
+    }
+  }
+
+  async cancel (request: Request, response: Response): Promise<Response> {
+    try {
+      const { orderId } = request.params
+
+      const cancelDelivery = container.resolve(CancelDeliveryService)
+
+      const order = await cancelDelivery.execute(Number(orderId))
 
       return response.json(order)
     } catch (error) {

@@ -6,6 +6,8 @@ import DeliveryManOrderRepository from '@modules/deliveryman/infra/typeorm/repos
 import DeliveryManRepository from '@modules/deliveryman/infra/typeorm/repositories/DeliveryManRepository'
 import IDeliveryManOrderRepository from '@modules/deliveryman/repositories/IDeliveryManOrderRepository'
 import IDeliveryManRepository from '@modules/deliveryman/repositories/IDeliveryManRepository'
+import DeliveryProblemsRepository from '@modules/deliveryproblems/infra/typeorm/repositories/DeliveryProblemsRepository'
+import IDeliveryProblemsRepository from '@modules/deliveryproblems/repositories/IDeliveryProblemsRepository'
 import OrderRepository from '@modules/order/infra/typeorm/repositories/OrderRepository'
 import IOrderRepository from '@modules/order/repositories/IOrderRepository'
 import RecipientsRepository from '@modules/recipients/infra/typeorm/repositories/RecipientsRepository'
@@ -36,4 +38,9 @@ container.registerSingleton<IDeliveryManOrderRepository>(
 container.registerSingleton<IOrderRepository>(
   'OrderRepository',
   OrderRepository,
+)
+
+container.registerSingleton<IDeliveryProblemsRepository>(
+  'DeliveryProblemsRepository',
+  DeliveryProblemsRepository,
 )

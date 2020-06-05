@@ -40,7 +40,6 @@ orderRouter.put(
       deliveryMan: Joi.object({
         id: Joi.number().integer(),
       }),
-      canceledAt: Joi.date(),
     },
   }),
   orderController.update,

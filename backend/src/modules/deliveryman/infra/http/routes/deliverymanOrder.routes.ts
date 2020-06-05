@@ -14,6 +14,11 @@ deliveryManOrdersRouter.get(
   deliveryManOrderController.index,
 )
 
+deliveryManOrdersRouter.delete(
+  '/:orderId/cancel-delivery',
+  deliveryManOrderController.cancel,
+)
+
 deliveryManOrdersRouter.put(
   '/:deliveryManId/start-delivery/:orderId',
   deliveryManOrderController.startDelivery,
