@@ -1,12 +1,13 @@
 import { Router } from 'express'
 
-import { celebrate, Segments } from 'celebrate'
+import multer from 'multer'
 
-import Joi from '@hapi/joi'
-
-import DeliveryManOrderController from '../controllers/DeliveryManOrderController'
+import multerConfig from '@config/multer'
+import DeliveryManOrderController from '@modules/deliveryman/infra/http/controllers/DeliveryManOrderController'
 
 const deliveryManOrdersRouter = Router()
+const upload = multer(multerConfig)
+
 const deliveryManOrderController = new DeliveryManOrderController()
 
 deliveryManOrdersRouter.get(
@@ -26,11 +27,7 @@ deliveryManOrdersRouter.put(
 
 deliveryManOrdersRouter.patch(
   '/:deliveryManId/finish-delivery/:orderId',
-  celebrate({
-    [Segments.BODY]: {
-      signature: Joi.string().required(),
-    },
-  }),
+  upload.single('signature'),
   deliveryManOrderController.finishDelivery,
 )
 

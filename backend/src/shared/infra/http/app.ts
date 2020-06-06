@@ -5,6 +5,7 @@ import express, { Request, Response, NextFunction } from 'express'
 
 import { errors } from 'celebrate'
 import cors from 'cors'
+import path from 'path'
 
 import AppError from '@shared/errors/AppError'
 import routes from '@shared/infra/http/routes'
@@ -46,6 +47,7 @@ class App {
 
   private routes (): void {
     this.express.use(routes)
+    this.express.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
   }
 }
 

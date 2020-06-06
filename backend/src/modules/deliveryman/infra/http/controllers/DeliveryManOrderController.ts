@@ -1,5 +1,6 @@
 import { Response, Request } from 'express'
 
+import fs from 'fs'
 import { container } from 'tsyringe'
 
 import CancelDeliveryService from '@modules/deliveryman/services/CancelDeliveryService'
@@ -33,13 +34,15 @@ export default class DeliveryManOrderController {
   async finishDelivery (request: Request, response: Response): Promise<Response> {
     try {
       const { orderId, deliveryManId } = request.params
-      const { signature } = request.body
+      const signature = request.file.filename
+
       const finishDelivery = container.resolve(FinishDeliveryService)
 
       const order = await finishDelivery.execute(Number(orderId), Number(deliveryManId), String(signature))
 
       return response.json(order)
     } catch (error) {
+      fs.unlinkSync(request.file.path)
       return response.status(error.statusCode || 500).json(error)
     }
   }
