@@ -10,8 +10,8 @@ export default class ListRecipientsService {
     private recipientsRepository: IRecipientsRepository,
   ) {}
 
-  async execute (): Promise<Recipient[]> {
-    const recipients = await this.recipientsRepository.findAll()
+  async execute (name: string): Promise<Recipient[]> {
+    const recipients = await this.recipientsRepository.findAll(name)
 
     return recipients
   }

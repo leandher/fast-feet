@@ -6,6 +6,9 @@ export default class Recipient {
   id: number;
 
   @Column()
+  name: string;
+
+  @Column()
   street: string;
 
   @Column()

@@ -9,9 +9,10 @@ import UpdateRecipientsService from '@modules/recipients/services/UpdateRecipien
 export default class RecipientsController {
   async index (request: Request, response: Response): Promise<Response> {
     try {
+      const { q } = request.query
       const listRecipients = container.resolve(ListRecipientsService)
 
-      const recipients = await listRecipients.execute()
+      const recipients = await listRecipients.execute(String(q || ''))
 
       return response.json(recipients)
     } catch (error) {
@@ -21,7 +22,7 @@ export default class RecipientsController {
 
   async create (request: Request, response: Response): Promise<Response> {
     try {
-      const { street, number, complement, state, city, cep, district } = request.body
+      const { street, number, complement, state, city, cep, district, name } = request.body
 
       const createRecipient = container.resolve(CreateRecipientsService)
 
@@ -33,6 +34,7 @@ export default class RecipientsController {
         city,
         cep,
         district,
+        name,
       })
       return response.json(recipient)
     } catch (error) {
@@ -42,7 +44,7 @@ export default class RecipientsController {
 
   async update (request: Request, response: Response): Promise<Response> {
     try {
-      const { street, number, complement, state, city, cep, district } = request.body
+      const { street, number, complement, state, city, cep, district, name } = request.body
       const { id } = request.params
 
       const updateRecipient = container.resolve(UpdateRecipientsService)
@@ -55,6 +57,7 @@ export default class RecipientsController {
         state,
         city,
         cep,
+        name,
         district,
       })
       return response.json(recipient)

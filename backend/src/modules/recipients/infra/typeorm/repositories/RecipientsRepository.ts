@@ -15,8 +15,10 @@ export default class RecipientsRepository implements IRecipientsRepository {
     return this.ormRepository.save(recipient)
   }
 
-  async findAll (): Promise<Recipient[]> {
-    const recipients = await this.ormRepository.find()
+  async findAll (name: string): Promise<Recipient[]> {
+    const recipients = await this.ormRepository.find({
+      where: `name ilike '%${name}%'`,
+    })
 
     return recipients
   }

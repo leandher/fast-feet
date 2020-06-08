@@ -15,6 +15,7 @@ recipientsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
+      name: Joi.string().required(),
       street: Joi.string().required(),
       number: Joi.string().required(),
       complement: Joi.string().required(),
@@ -32,6 +33,7 @@ recipientsRouter.put(
   celebrate({
     [Segments.BODY]: {
       id: Joi.number().integer().required(),
+      name: Joi.string().required(),
       street: Joi.string().required(),
       number: Joi.string().required(),
       complement: Joi.string().required(),
