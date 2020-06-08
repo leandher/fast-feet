@@ -11,8 +11,10 @@ import Queues from '@shared/infra/lib/Queues'
 export default class DeliveryManController {
   async index (request: Request, response: Response): Promise<Response> {
     try {
+      const { q } = request.query
+
       const listDeliveryMan = container.resolve(ListDeliveryManService)
-      const deliveryMen = await listDeliveryMan.execute()
+      const deliveryMen = await listDeliveryMan.execute(String(q || ''))
 
       return response.json(deliveryMen)
     } catch (error) {

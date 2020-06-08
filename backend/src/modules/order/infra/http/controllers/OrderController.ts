@@ -11,8 +11,10 @@ import Queues from '@shared/infra/lib/Queues'
 export default class OrderController {
   async index (request: Request, response: Response): Promise<Response> {
     try {
+      const { q } = request.query
+
       const listOrder = container.resolve(ListOrderService)
-      const orders = await listOrder.execute()
+      const orders = await listOrder.execute(String(q || ''))
 
       return response.json(orders)
     } catch (error) {

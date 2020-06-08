@@ -2,7 +2,7 @@ import ICreateDeliveryManDTO from '@modules/deliveryman/dtos/ICreateDeliveryManD
 import DeliveryMan from '@modules/deliveryman/infra/typeorm/entities/DeliveryMan'
 
 export default interface IDeliveryManRepository {
-  findAll(): Promise<DeliveryMan[]>;
+  findAll(name: string): Promise<DeliveryMan[]>;
   findById(id: number): Promise<DeliveryMan>;
   findByEmail(email: string): Promise<DeliveryMan>;
   create(deliveryMan: ICreateDeliveryManDTO): Promise<DeliveryMan>;

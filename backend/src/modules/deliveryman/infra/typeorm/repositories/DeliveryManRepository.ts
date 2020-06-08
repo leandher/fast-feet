@@ -11,8 +11,10 @@ export default class DeliveryManRepository implements IDeliveryManRepository {
     this.ormRepository = getRepository(DeliveryMan)
   }
 
-  findAll (): Promise<DeliveryMan[]> {
-    return this.ormRepository.find()
+  findAll (name: string): Promise<DeliveryMan[]> {
+    return this.ormRepository.find({
+      where: `name ilike '%${name}%'`,
+    })
   }
 
   findByEmail (email: string): Promise<DeliveryMan> {

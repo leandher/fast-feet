@@ -1,4 +1,5 @@
 export default interface ICreateRecipientDTO {
+  name: string;
   street: string;
   number: string;
   complement: string;

@@ -11,8 +11,9 @@ export default class OrderRepository implements IOrderRepository {
     this.ormRepository = getRepository(Order)
   }
 
-  findAll (): Promise<Order[]> {
+  findAll (name: string): Promise<Order[]> {
     return this.ormRepository.find({
+      where: `product ilike '%${name}%'`,
       relations: ['recipient', 'deliveryMan'],
     })
   }

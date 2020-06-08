@@ -10,8 +10,8 @@ export default class ListOrderService {
     private orderRepository: IOrderRepository,
   ) {}
 
-  async execute (): Promise<Order[]> {
-    const deliveryMen = await this.orderRepository.findAll()
+  async execute (name: string): Promise<Order[]> {
+    const deliveryMen = await this.orderRepository.findAll(name)
     return deliveryMen
   }
 }

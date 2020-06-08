@@ -10,8 +10,8 @@ export default class ListDeliveryManService {
     private deliveryManRepository: IDeliveryManRepository,
   ) {}
 
-  async execute (): Promise<DeliveryMan[]> {
-    const deliveryMen = await this.deliveryManRepository.findAll()
+  async execute (name: string): Promise<DeliveryMan[]> {
+    const deliveryMen = await this.deliveryManRepository.findAll(name)
     return deliveryMen
   }
 }
