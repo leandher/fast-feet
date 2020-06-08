@@ -20,7 +20,7 @@ module.exports = {
   },
   rules: {
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars-experimental': [
+    '@typescript-eslint/no-unused-vars': [
       'error',
       { ignoredNamesRegex: '^_', ignoreArgsIfArgsAfterAreUsed: true },
     ],

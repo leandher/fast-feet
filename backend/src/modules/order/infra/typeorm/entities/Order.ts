@@ -16,11 +16,11 @@ export default class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Recipient)
+  @ManyToOne(() => Recipient, { eager: true })
   @JoinColumn({ name: 'recipient_id' })
   recipient: Recipient;
 
-  @ManyToOne(() => DeliveryMan)
+  @ManyToOne(() => DeliveryMan, { eager: true })
   @JoinColumn({ name: 'deliveryman_id' })
   deliveryMan: DeliveryMan;
 

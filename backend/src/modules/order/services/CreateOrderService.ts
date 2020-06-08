@@ -12,6 +12,8 @@ export default class CreateOrderService {
   ) {}
 
   async execute (order: ICreateOrderDTO): Promise<Order> {
-    return this.orderRepository.create(order)
+    const createdOrder = await this.orderRepository.create(order)
+
+    return this.orderRepository.findById(createdOrder.id)
   }
 }

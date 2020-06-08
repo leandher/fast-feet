@@ -3,12 +3,14 @@ import 'dotenv/config'
 
 import express, { Request, Response, NextFunction } from 'express'
 
+import { router, setQueues } from 'bull-board'
 import { errors } from 'celebrate'
 import cors from 'cors'
 import path from 'path'
 
 import AppError from '@shared/errors/AppError'
 import routes from '@shared/infra/http/routes'
+import Queues from '@shared/infra/lib/Queues'
 
 import '@shared/infra/typeorm'
 import '@shared/container'
@@ -27,6 +29,8 @@ class App {
     this.express.use(express.json())
     this.express.use(cors())
     this.express.use(errors())
+    setQueues(Queues.queues)
+    this.express.use('/admin/jobs', router)
     // eslint-disable-next-line
     this.express.use((err: Error, req: Request, res: Response, _: NextFunction) => {
       if (err instanceof AppError) {

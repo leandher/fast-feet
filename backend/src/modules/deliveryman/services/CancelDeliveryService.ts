@@ -19,6 +19,8 @@ export default class CancelDeliveryService {
 
     Object.assign(order, { canceledAt: new Date() })
 
-    return this.orderRepository.save(order)
+    const cancelleddOrder = await this.orderRepository.save(order)
+
+    return this.orderRepository.findById(cancelleddOrder.id)
   }
 }

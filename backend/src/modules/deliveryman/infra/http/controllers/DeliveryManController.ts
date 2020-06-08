@@ -6,6 +6,7 @@ import CreateDeliveryManService from '@modules/deliveryman/services/CreateDelive
 import ListDeliveryManService from '@modules/deliveryman/services/ListDeliveryManService'
 import RemoveDeliveryManService from '@modules/deliveryman/services/RemoveDeliveryManService'
 import UpdateDeliveryManService from '@modules/deliveryman/services/UpdateDeliveryManService'
+import Queues from '@shared/infra/lib/Queues'
 
 export default class DeliveryManController {
   async index (request: Request, response: Response): Promise<Response> {
@@ -25,6 +26,8 @@ export default class DeliveryManController {
 
       const createDeliveryMan = container.resolve(CreateDeliveryManService)
       const deliveryMan = await createDeliveryMan.execute({ name, avatarId, email })
+
+      Queues.add('RegisterMail', { deliveryMan })
 
       return response.json(deliveryMan)
     } catch (error) {

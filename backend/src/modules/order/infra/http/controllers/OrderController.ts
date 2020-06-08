@@ -6,6 +6,7 @@ import CreateOrderService from '@modules/order/services/CreateOrderService'
 import ListOrderService from '@modules/order/services/ListOrderService'
 import RemoveOrderService from '@modules/order/services/RemoveOrderService'
 import UpdateOrderService from '@modules/order/services/UpdateOrderService'
+import Queues from '@shared/infra/lib/Queues'
 
 export default class OrderController {
   async index (request: Request, response: Response): Promise<Response> {
@@ -29,6 +30,8 @@ export default class OrderController {
         recipient,
         product,
       })
+
+      Queues.add('NewOrderMail', { order })
 
       return response.json(order)
     } catch (error) {

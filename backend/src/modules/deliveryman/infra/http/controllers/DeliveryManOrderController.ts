@@ -7,6 +7,7 @@ import CancelDeliveryService from '@modules/deliveryman/services/CancelDeliveryS
 import FinishDeliveryService from '@modules/deliveryman/services/FinishDeliveryService'
 import ListDeliveryManOrdersService from '@modules/deliveryman/services/ListDeliveryManOrdersService'
 import StartDeliveryService from '@modules/deliveryman/services/StartDeliveryService'
+import Queues from '@shared/infra/lib/Queues'
 
 export default class DeliveryManOrderController {
   async index (request: Request, response: Response): Promise<Response> {
@@ -54,6 +55,8 @@ export default class DeliveryManOrderController {
       const cancelDelivery = container.resolve(CancelDeliveryService)
 
       const order = await cancelDelivery.execute(Number(orderId))
+
+      Queues.add('CancellationMail', { order })
 
       return response.json(order)
     } catch (error) {
