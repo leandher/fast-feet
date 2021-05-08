@@ -28,7 +28,7 @@
 		"nodemailer-express-handlebars": "^4.0.0",
 		"pg": "^7.3.0",
 		"tsyringe": "^4.3.0",
-		"typeorm": "0.2.24"
+		"typeorm": "0.2.25"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.2",
